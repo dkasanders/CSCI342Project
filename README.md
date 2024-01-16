@@ -1,2 +1,9 @@
-# CSCI342Project
-This is the GitHub repository for the CSCI 342 group project assignment.
+# CSCI 342 Project
+
+## Contributors
+- Dylan Kasanders
+- Kevin Hirohata
+- Aicha Falatah
+- Alex Socha
+- Ian Crawford
+- Ryan Rapoport
