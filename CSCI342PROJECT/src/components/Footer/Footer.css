@@ -1,0 +1,15 @@
+.contact-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.list-component {
+    margin-right: 10px;
+}
+
+.newsletter {
+    background-color: #12B886;
+    color: white;
+}
