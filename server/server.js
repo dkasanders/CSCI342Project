@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
-const Models = require("./models")
+const Models = require("./models.js")
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -25,7 +25,7 @@ app.post("/api/signup", async (req, res) => {
   
     try {
       // Attempt to find an existing user in the database with the provided email.
-      const user = await User.findOne({ email: email });
+      const user = await Models.User.findOne({ email: email });
       if (user) {
         return res.status(400).json({ message: "Email is already in use." });
       }
@@ -36,7 +36,7 @@ app.post("/api/signup", async (req, res) => {
           return res.status(500).json({ message: "Error hashing password" });
         }
         //TODO make this talk to the CRUD api instead
-        const user = new User({
+        const user = new Models.User({
           firstName, 
           lastName,   
           phoneNumber,  
@@ -60,30 +60,31 @@ app.post("/api/login", async (req, res) => {
         }
 
         try {
-            const user = await User.findOne({ email: email });
-            if (!user) {
-            return res.status(401).json({ message: "User does not exist" });
-            }
-            // Use bcrypt to compare the provided password with the hashed password stored in the database.
-            bcrypt.compare(password, user.password, (err, isMatch) => {
-            // If an error occurs during the comparison, return a 500 Internal Server Error status.
-            if (err) {
-                return res.status(500).json({ message: "Error comparing password" });
-            }
-            // If the passwords do not match, return a 401 Unauthorized status to indicate invalid credentials.
-            if (!isMatch) {
-                return res.status(401).json({ message: "Invalid credentials" });
-            }
+              const user = await Models.User.findOne({ email: email });
+              if (!user) {
+                return res.status(401).json({ message: "User does not exist" });
+              }
+              // Use bcrypt to compare the provided password with the hashed password stored in the database.
+              bcrypt.compare(password, user.password, (err, isMatch) => {
+              // If an error occurs during the comparison, return a 500 Internal Server Error status.
+              if (err) {
+                  return res.status(500).json({ message: "Error comparing password" });
+              }
 
-            // If the passwords match, generate a JWT token using the user's email as the payload.
-            // Set the token to expire in 1 hour.
-            const token = jwt.sign({ id: user.email }, process.env.JWT_SECRET, {
-                expiresIn: "1h",
-            });
+              // If the passwords do not match, return a 401 Unauthorized status to indicate invalid credentials.
+              if (!isMatch) {
+                  return res.status(401).json({ message: "Invalid credentials" });
+              }
 
-            // Return a 200 OK status with a success message, the generated token, and the user object.
-            // This indicates a successful login.
-            res.status(200).json({ message: "Login successful", token, user: user });
+              // If the passwords match, generate a JWT token using the user's email as the payload.
+              // Set the token to expire in 1 hour.
+              const token = jwt.sign({ id: user.email }, process.env.JWT_SECRET, {
+                  expiresIn: "1h",
+              });
+
+              // Return a 200 OK status with a success message, the generated token, and the user object.
+              // This indicates a successful login.
+              res.status(200).json({ message: "Login successful", token, user: user });
             });
         } catch (err) {
             // If an error occurs while finding the user, return a 500 Internal Server Error status.
@@ -92,8 +93,49 @@ app.post("/api/login", async (req, res) => {
         }
     });
 
+
+
+  
+
+  app.get("/api/products", async (req, res) => {
+    try {
+      const products = await Models.Product.find({});
+      res.send(products);
+    }
+    catch (error){
+      response.status(500).send({ error });
+    }
+  });
+
+  app.get ("/api/productscatagory", async (req, res) => {
+    const reqCategory = req.body;
+    try {
+      const products = await Models.Product.find({category : reqCatagory});
+      res.send(products);
+    }
+    catch (error){
+      response.status(500).send({ error });
+    }
+  });
+
+  app.route("/api/product")
+    .get((req, res) => {
+      // check if the id exists in the models file
+      // return the product or send an error
+    })
+    .put((req, res) => {
+      // find one product and update
+      // return created response with the updated object or an error
+    })
+    .post((req, res) => {
+      // validate all of the necessary fields
+      // return created response with the new object or an error
+    })
+
+
   app.get("/", (req, res) => {
     res.send("Root Path");
+  
   });
 
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
