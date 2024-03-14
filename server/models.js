@@ -33,8 +33,10 @@ const userSchema = new mongoose.Schema({
         require: true
     },
     addresses: [{
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Address'
+        address : {
+            type: mongoose.Schema.Types.ObjectId, 
+            ref: 'Address'
+        }
     }]
 });
 
@@ -42,7 +44,7 @@ const User = mongoose.model("User", userSchema);
 
 const addressSchema = new mongoose.Schema({ 
     _id: mongoose.Schema.Types.ObjectId,
-    User: {
+    user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         require: true
@@ -71,14 +73,18 @@ const addressSchema = new mongoose.Schema({
 const Address = mongoose.model("Address", addressSchema);
 
 const cartSchema = new mongoose.Schema({ 
+    _id: mongoose.Schema.Types.ObjectId,
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         require: true
     },
     products: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product'
+            product: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Product',
+            },
+            quantity : Number
     }]
 });
 
@@ -92,13 +98,14 @@ const productSchema = new mongoose.Schema({
         require: true
     },
     description: String,
-    category: {
-        type: String,
-        require: true
-    },
+    categories: [{
+        category: String
+    }],
     images: [{
-        data: Buffer,
-        type: String
+        image :{
+            data: Buffer,
+            type: String
+        }
     }],
     price: {
         type: Number,
@@ -130,9 +137,10 @@ const orderSchema = new mongoose.Schema({
         require: true
     },
     products: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product',
-        require: true
+        product: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Product'
+        }
     }],
     note: String,
 
