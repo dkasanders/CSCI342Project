@@ -49,14 +49,34 @@ const SignupForm = () => {
       return;
     }
 
+
+
     // Store the successful account in local storage
-    localStorage.setItem('user', JSON.stringify(data));
-
+    //localStorage.setItem('user', JSON.stringify(data));
+    //Call local signup endpoint
+    fetch ("http://localhost:3000/api/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error ("Network response not ok");
+        }
+        return res.json()
+      })
+      .then((data) => {
+        toast.success("Signup successful, please log in.");
+        navigate("/login");
+      })
+      .catch((error) => {
+        toast.error(error.message || "An error occured during signup.");
+      })
+      //Set more state variables down here with .finally if needed
     // Dispatch the login action to update authentication state
-    dispatch(login(data));
-
-    toast.success('Signup successful');
-    navigate('/login');
+    //dispatch(login(data)); - This will be good for the handlesubmit in login.jsx
   };
 
   return (
