@@ -15,6 +15,7 @@ import {createRoutesFromElements, Route } from 'react-router-dom';
 import Orders from './components/Orders/Orders.jsx';
 import { Provider } from 'react-redux';
 import store from './components/store/store.jsx'
+import Account from './components/Account/Account.jsx';
 
 
 /*const router = createBrowserRouter([
@@ -40,6 +41,7 @@ const router = createBrowserRouter(
       <Route path= "/search" element={<SearchPage searchKey="Acacia Wood"/>}/> <Route/>
       <Route path= "/cart" element={<Cart/>}/> <Route/>
       <Route path="/orders" element={<Orders/>}/><Route/>
+      <Route path="/account" element={<Account/>}/><Route/>
     </Route>
     </Route>
   )

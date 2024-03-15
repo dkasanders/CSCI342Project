@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./Account.css";
-import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs"; // Social icons
-import { MdAccountCircle } from "react-icons/md"; // Account icon
 import { useSelector } from "react-redux"; // Redux hook for accessing state
 
 // Account component for user profile page
@@ -37,25 +35,9 @@ const Account = () => {
         <div className="container userCard cardWidth">
           <div className="profile-tab-nav border-right">
             <div className="p-4">
-              <div className="flex justify-center mb-3">
-                <MdAccountCircle class="text-9xl" />
-              </div>
               <h4 className="text-center text-lg font-semibold">
                 {user.firstName} {user.lastName}
               </h4>
-            </div>
-            <div className="flex justify-center">
-              <ul className="flex space-x-2">
-                <li>
-                  <BsFacebook className="text-blue-600 text-2xl" />
-                </li>
-                <li>
-                  <BsLinkedin className="text-blue-500 text-2xl" />
-                </li>
-                <li>
-                  <BsInstagram className="text-pink-500 text-2xl" />
-                </li>
-              </ul>
             </div>
           </div>
           <div className="tab-content pp-4 p-md-5" id="v-pills-tabContent">

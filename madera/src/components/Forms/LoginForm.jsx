@@ -30,7 +30,7 @@ const LoginForm = () => {
     setIsLoading(true);
     
     //2.  Create a function that sends a POST request to the /api/signup endpoint with the user's signup data. Use the fetch API for sending the request. Include headers for Content-Type set to application/json, and stringify the form data for the body.
-    fetch("http://localhost:3000/api/login", {
+    fetch("http://localhost:3000/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

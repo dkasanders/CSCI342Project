@@ -46,6 +46,7 @@ const SignupForm = () => {
   }, [errors]);
 
   const onSubmit = (data) => {
+    console.log("hello")
     if (data.password !== data.confirmPassword) {
       toast.error('Passwords do not match');
       return;
@@ -53,7 +54,7 @@ const SignupForm = () => {
 
 
     //Call local signup endpoint
-    fetch ("http://localhost:3000/api/signup", {
+    fetch ("http://localhost:3000/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -101,10 +102,6 @@ const SignupForm = () => {
           <label htmlFor="streetAddress"><b>Street Address</b></label>
           <input type="text" placeholder="123 main st." {...register('streetAddress')} />
           {errors.streetAddress && <p className="validation-error">{errors.streetAddress.message}</p>}
-
-          <label htmlFor="city"><b>City</b></label>
-          <input type="text" placeholder="Yakima" {...register('city')} />
-          {errors.city && <p className="validation-error">{errors.city.message}</p>}
 
           <label htmlFor="city"><b>City</b></label>
           <input type="text" placeholder="Yakima" {...register('city')} />
