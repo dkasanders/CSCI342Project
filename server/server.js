@@ -186,7 +186,7 @@ app.post("/login", async (req, res) => {
     }
   });
 
-  app.get ("/product/catagory/:category", async (req, res) => {
+  app.get ("/product/category/:category", async (req, res) => {
     const category = req.params.category;
     try {
       const products = await Models.Product.find( {categories: {$elemMatch: {category: category}}});
