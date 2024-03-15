@@ -437,8 +437,8 @@ app.route("/cart")
       }
       const {_id} = req.body;
       try {
-        const cart = await Models.Cart.findOne({_id: _id});
-        res.send(cart);
+        const order = await Models.Order.findOne({_id: _id});
+        res.send(order);
       }
       catch (error){
         response.status(500).send({ message: error.message });
@@ -486,11 +486,11 @@ app.route("/cart")
         });
       }
       const {_id} = req.body
-      Models.Address.findByIdAndUpdate(_id, req.body)
+      Models.Order.findByIdAndUpdate(_id, req.body)
         .then(data => {
           if (!data) {
             res.status(404).send({
-              message: `Cannot update Order with id=${id}.`
+              message: `Cannot update Order with id=${_id}.`
             });
           }
           else {

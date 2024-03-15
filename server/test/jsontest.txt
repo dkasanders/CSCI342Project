@@ -178,7 +178,7 @@ PUT
 ORDER 
 GET 
 {
-    "_id" : "", (orderid)
+    "_id" : "65f3c2b47a0a4fbddeda8042"
 }
 
 POST 
@@ -190,8 +190,8 @@ POST
 }
 PUT 
 {
-    "_id": "" (orderid)
+    "_id": "65f3c2b47a0a4fbddeda8042"
     "user" : "65f3b38fb294e9b3348c358c",
     "address" : "65f3bd689110c4c2a65d5926",
-    "products": [{"product": "65f3b5db55e3b67cf805b5b7"}]
+    "products": [{"product": "65f3b5db55e3b67cf805b5b7"}, {"product": "65f3b5db55e3b67cf805b5b7"}]
 }
