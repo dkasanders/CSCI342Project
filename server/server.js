@@ -331,7 +331,7 @@ app.route("/cart")
           message: "No ID found"
         });
       }
-      const {user} = req.body
+      const {user} = req.body;
       try {
         const cart = await Models.Cart.findOne({user: user});
         res.send(cart);
@@ -346,8 +346,8 @@ app.route("/cart")
         return res.status(400).json({ message: "user Id required" });
       }
       try {
-        const user = await Models.User.findOne({ _id: user});
-        if (!user) {
+        const usercheck = await Models.User.findOne({ _id: user});
+        if (!usercheck) {
           res.status(404).send({
             message: "No User found"
           });
@@ -418,6 +418,81 @@ app.route("/cart")
         response.status(500).send({ message: error.message });
       }
     });
+
+
+  //-------------------ORDER API------------------------------
+
+    app.route("/order")
+    .get(async (req, res) => {
+      if (!req.body) {
+        return res.status(404).send({
+          message: "No ID found"
+        });
+      }
+      const {_id} = req.body;
+      try {
+        const cart = await Models.Cart.findOne({_id: _id});
+        res.send(cart);
+      }
+      catch (error){
+        response.status(500).send({ message: error.message });
+      }
+    })
+    .post(async (req, res) => {
+      const {orderNumber, user, address} = req.body;
+      try {
+        const usercheck = await Models.User.findOne({ _id: user});
+        if (!usercheck) {
+          res.status(404).send({
+            message: "No User found"
+          });
+        }
+        const addresscheck = await Models.Address.findOne({ _id: address});
+        if (!addresscheck) {
+          res.status(404).send({
+            message: "Address not found"
+          });
+        }
+      }
+      catch (error) {
+        response.status(500).send({ message: error.message});
+      }
+
+      try {
+        const order = new Models.Product({
+          orderNumber,
+          user,
+          address,
+          products: []
+        });
+        const data = order.save();
+        res.status(201).json({message: "Order submitted successfully", data});
+    } catch (err) {
+      return res.status(500).json({ message: err.message || "Error while creating Order" });
+    }
+
+    })
+    .put(async (req, res) => {
+      if (!req.body) {
+        return res.status(400).send({
+          message: "Data to update can not be empty!"
+        });
+      }
+      const {_id} = req.body
+      Models.Address.findByIdAndUpdate(_id, req.body)
+        .then(data => {
+          if (!data) {
+            res.status(404).send({
+              message: `Cannot update Order with id=${id}.`
+            });
+          }
+          else {
+            res.status(201).json({message: "Order updated successfully", data})
+          }
+        }
+      )
+    })
+
 
   // ---------------------PATHS-------------------------------
   app.get("/", (req, res) => {
