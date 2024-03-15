@@ -4,10 +4,11 @@ import App from './App.jsx'
 import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import About from './components/About/About.jsx';
-import Login from './components/Login/Login.jsx';
+import Login from './components/Forms/LoginForm.jsx';
 import Shop from './components/Shop/Shop.jsx';
-import NotFoundPage from './components/NotFoundPage/NotFoundPage.jsx';
+import PageNotFound from './components/NotFoundPage/PageNotFound.jsx';
 import Cart from './components/Cart/Cart.jsx';
+import SignupForm from './components/Forms/SignupForm.jsx'
 
 
 const router = createBrowserRouter([
@@ -16,7 +17,8 @@ const router = createBrowserRouter([
     {path: '/login', element:<Login/>},
     {path: '/shop', element:<Shop/>},
     {path: '/cart', element:<Cart/>},
-    {path: '*', element:<NotFoundPage/>}
+    {path: '/signup', element:<SignupForm/>},
+    {path: '*', element:<PageNotFound/>}
 ])
 
 

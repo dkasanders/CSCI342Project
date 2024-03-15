@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Toaster, toast } from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { login } from '../../store/slices/authSlice';
+import { login } from '../store/slices/authSlice';
 import z from 'zod';
 
 const schema = z.object({
