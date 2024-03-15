@@ -446,6 +446,7 @@ app.route("/cart")
     })
     .post(async (req, res) => {
       const {orderNumber, user, address, products, note} = req.body;
+
       try {
         const usercheck = await Models.User.findOne({ _id: user});
         if (!usercheck) {
