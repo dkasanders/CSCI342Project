@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.header{
+    display: flex;
+    justify-content: center;
+    gap: 500px;
+    align-items: center;
+}
+
+
+.navigation, .login-button {
+    display: flex;
+    gap: 20px;
+}
+
+.header-title {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width:50px;
+    height: auto;
+
+}
+
