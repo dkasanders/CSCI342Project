@@ -35,8 +35,10 @@ app.post("/signup", async (req, res) => {
         if (err) {
           return res.status(500).json({ message: "Error hashing password" });
         }
+        const _id = new mongoose.Types.ObjectId();
         //TODO make this talk to the CRUD api instead
         const user = new Models.User({
+          _id,
           firstName, 
           lastName,   
           phoneNumber,  
@@ -118,7 +120,7 @@ app.post("/login", async (req, res) => {
           });
         }
         const {_id} = req.body
-        Models.User.findById(_id, req.body)
+        Models.User.findByIdAndUpdate(_id, req.body)
           .then(data => {
             if (!data) {
               res.status(404).send({
@@ -184,14 +186,14 @@ app.post("/login", async (req, res) => {
     }
   });
 
-  app.get ("/product/catagory", async (req, res) => {
+  app.get ("/product/catagory/:category", async (req, res) => {
     const category = req.params.category;
     try {
-      const products = await Models.Product.find({$elemMatch: {categories: {category: category}}});
+      const products = await Models.Product.find( {categories: {$elemMatch: {category: category}}});
       res.send(products);
     }
     catch (error){
-      response.status(500).send({ message: error.message });
+      res.status(500).send({ message: error.message });
     }
   });
   
@@ -221,8 +223,10 @@ app.post("/login", async (req, res) => {
       if (!name || !description || !categories || !price || !inventory ) {
         return res.status(400).json({ message: "All fields are required." });
       }
+      const _id = new mongoose.Types.ObjectId();
       try {
           const product = new Models.Product({
+            _id,
             name, 
             description,
             categories,   
@@ -282,8 +286,10 @@ app.route("/address")
       if (!user || !streetAddress || !zipCode || !state || !primary || !billing) {
         return res.status(400).json({ message: "All fields are required." });
       }
+      const _id = new mongoose.Types.ObjectId();
       try {
           const address = new Models.Product({
+            _id,
             user, 
             streetAddress,   
             zipCode,  
@@ -355,9 +361,10 @@ app.route("/cart")
       catch (error) {
         response.status(500).send({ message: error.message });
       }
-      
+      const _id = new mongoose.Types.ObjectId();
       try {
           const cart = new Models.Product({
+            _id,
             user, 
             products: []
           });
@@ -456,9 +463,10 @@ app.route("/cart")
       catch (error) {
         response.status(500).send({ message: error.message});
       }
-
+      const _id = new mongoose.Types.ObjectId();
       try {
         const order = new Models.Product({
+          _id,
           orderNumber,
           user,
           address,

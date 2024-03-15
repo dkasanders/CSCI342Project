@@ -3,10 +3,34 @@ SIGN UP
     "firstName": "Alex",
     "lastName": "Socha",
     "email" : "test@test.test",
-    "phoneNumber" : 0123456789,
+    "phoneNumber" : "0123456789",
     "password" : "testtest",
     "confirmPassword" : "testtest"
 }
+
+"user": {
+        "_id": "65f3b38fb294e9b3348c358c",
+        "email": "test@test.test",
+        "firstName": "Alex",
+        "lastName": "Socha",
+        "phoneNumber": 123456789,
+        "addresses": []
+    }
+
+ "user": {
+        "_id": "65f3b38fb294e9b3348c358c",
+        "email": "test@test.test",
+        "password": "$2a$10$3S61N1vejptdUqe/atLPIuhyV6JpF8moHjVOeI6LC7vHpYjpeJ82O",
+        "firstName": "Alex",
+        "lastName": "Socha",
+        "phoneNumber": 123456789,
+        "addresses": [],
+        "__v": 0
+    }
+
+"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRlc3RAdGVzdC50ZXN0IiwiaWF0IjoxNzEwNDcwMTY0LCJleHAiOjE3MTA0NzM3NjR9.N-a25qquNlFW6VKMpByAj5Ot2XKmDQfNNaDgOorY8EY",
+ 
+
 
 LOGIN
 {
@@ -14,10 +38,11 @@ LOGIN
     "password" : "password"
 }
 
+
 USER 
 GET
 {
-    "_id": ""
+    "_id": "65f3b38fb294e9b3348c358c"
 }
 PUT 
 {
@@ -46,27 +71,28 @@ PRODUCT
 /product
 GET
 {
-    "_id": ""
+    "_id": "65f3b5db55e3b67cf805b5b7"
 }
+
 POST
 {
     "name": "Purple Heart", 
     "description": "A distinct Purple wood, Caused by the oxidization of iron in the wood. Dimensions 12 x 12 x 2", 
-    "categories": {"Purple", "Heart", "Soft"}, 
+    "categories": [{"category": "Purple"}, {"category": "Heart"}, {"category": "Soft"}], 
     "images": [], 
-    "price" : 50,
+    "price" : "50",
     "inventory" : "5"
 }
 
 PUT 
 {
-    "_id" : 
+    "_id" : "65f3b5db55e3b67cf805b5b7",
     "name": "Purple Heart", 
-    "description": "A distinct Purple wood, Caused by the oxidization of iron in the wood. Dimensions 12 x 12 x 2", 
-    "categories": ["Purple", "Heart", "Soft"], 
+    "description": "updated", 
+    "categories": [{"category": "Test"}, {"category": "Heart"}, {"category": "Soft"}], 
     "images": [], 
-    "price" : 50,
-    "inventory" : 5
+    "price" : "50",
+    "inventory" : "5"
 }
 
 /product/catagory/:catagory
@@ -83,7 +109,7 @@ GET
 }
 POST 
 {
-    "user": "", (userid)
+    "user": "65f3b38fb294e9b3348c358c", 
     "streetAddress": " 111 main st.",
     "city": "seattle",
     "zipCode" : 98222,
@@ -95,7 +121,7 @@ POST
 PUT 
 {
     "_id": "",
-    "user": "", (userid)
+    "user": "65f3b38fb294e9b3348c358c",
     "streetAddress": " 222 second st.",
     "city": "portland",
     "zipCode" : 98223,
@@ -108,24 +134,24 @@ CART
 GET
 
 {
-    "user": "" (userid)
+    "user": "65f3b38fb294e9b3348c358c" 
 }
 
 POST
 {
-    "user" : "" (userid)
+    "user" : "65f3b38fb294e9b3348c358c" 
 }
 
 PUT 
 {
     "_id": "",
-    "user": "", (userid)
+    "user": "65f3b38fb294e9b3348c358c",
     "products": [] (product ids, quantity)
 }
 
 /cart/newproduct
 {
-    "user": "", (userid)
+    "user": "65f3b38fb294e9b3348c358c", 
     "product": "", (product ID)
     "quantity" : 5
 }
@@ -139,14 +165,14 @@ GET
 POST 
 {
     "orderNumber" : 10,
-    "user" : "", (userid)
+    "user" : "65f3b38fb294e9b3348c358c", 
     "address" : "", (addressid)
     "products": [] (product ids)
 }
 PUT 
 {
     "_id": "" (orderid)
-    "user" : "", (userid)
+    "user" : "65f3b38fb294e9b3348c358c",
     "address" : "", (addressid)
     "products": [] (product ids)
 }
