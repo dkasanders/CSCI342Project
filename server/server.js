@@ -170,7 +170,7 @@ app.post("/login", async (req, res) => {
       })
     }
     catch (error){
-      response.status(500).send({ message: error.message });
+      res.status(500).send({ message: error.message });
     }
   });
 
@@ -191,7 +191,7 @@ app.post("/login", async (req, res) => {
 
     }
     catch (error){
-      response.status(500).send({ message: error.message });
+      res.status(500).send({ message: error.message });
     }
   });
 
@@ -202,7 +202,7 @@ app.post("/login", async (req, res) => {
       res.send(products);
     }
     catch (error){
-      response.status(500).send({ message: error.message });
+      res.status(500).send({ message: error.message });
     }
   });
 
@@ -233,7 +233,7 @@ app.post("/login", async (req, res) => {
         res.send(product);
       }
       catch (error){
-        response.status(500).send({ message: error.message });
+        res.status(500).send({ message: error.message });
       }
     })
     .post(async (req, res) => {
@@ -314,7 +314,7 @@ app.route("/address")
         res.send(address);
       }
       catch (error){
-        response.status(500).send({ message: error.message });
+        res.status(500).send({ message: error.message });
       }
     })
     .post(async (req, res) => {
@@ -394,7 +394,7 @@ app.route("/cart")
         res.send(cart);
       }
       catch (error){
-        response.status(500).send({ message: error.message });
+        res.status(500).send({ message: error.message });
       }
     })
     .post(async (req, res) => {
@@ -411,7 +411,7 @@ app.route("/cart")
         }
       }
       catch (error) {
-        response.status(500).send({ message: error.message });
+        res.status(500).send({ message: error.message });
       }
       const _id = new mongoose.Types.ObjectId();
       try {
@@ -489,7 +489,7 @@ app.route("/cart")
         res.status(201).send({message: "Cart updated successfully"})
       }
       catch (error) {
-        response.status(500).send({ message: error.message });
+        res.status(500).send({ message: error.message });
       }
     });
 
@@ -509,7 +509,7 @@ app.route("/cart")
         res.send(order);
       }
       catch (error){
-        response.status(500).send({ message: error.message });
+        res.status(500).send({ message: error.message });
       }
     })
     .post(async (req, res) => {
@@ -530,7 +530,7 @@ app.route("/cart")
         }
       }
       catch (error) {
-        response.status(500).send({ message: error.message});
+        res.status(500).send({ message: error.message});
       }
       const _id = new mongoose.Types.ObjectId();
       try {
