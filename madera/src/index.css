@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-=======
 @tailwindcss base;
 @tailwindcss components;
 @tailwindcss utilities;
->>>>>>> group
+
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
