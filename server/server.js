@@ -445,7 +445,7 @@ app.route("/cart")
       }
     })
     .post(async (req, res) => {
-      const {orderNumber, user, address, products} = req.body;
+      const {orderNumber, user, address, products, note} = req.body;
       try {
         const usercheck = await Models.User.findOne({ _id: user});
         if (!usercheck) {
@@ -470,7 +470,8 @@ app.route("/cart")
           orderNumber,
           user,
           address,
-          products
+          products,
+          note
         });
         order.save();
         res.status(201).json({message: "Order submitted successfully", order: { ...order._doc}});
