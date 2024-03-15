@@ -249,7 +249,7 @@ app.post("/login", async (req, res) => {
         });
       }
       const {_id} = req.body
-      Models.Product.findById(_id,  req.body)
+      Models.Product.findByIdAndUpdate(_id,  req.body)
         .then(data => {
           if (!data) {
             res.status(404).send({
