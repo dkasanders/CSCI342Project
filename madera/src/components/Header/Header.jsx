@@ -11,21 +11,29 @@ import './../../index.css'
 function Header() {
 
     return (
-        <div>
+      <div>
+        <div className="header">
             <h1><Link to="/">Madera</Link></h1>
-            <SearchBar/>
-            <Link to="/shop">Shop</Link>
-            <Link to="/about">About Us</Link>
-            <Link to="/cart">Cart</Link>
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Signup</Link>
+            <div className="navigation">
+              <Link to="/shop">Shop</Link>
+              <Link to="/about">About Us</Link>
+              <Link to="/cart">Cart</Link>
+            </div>
+            <div className="signup">
+              <Link to="/login">Login</Link>
+              <Link to="/signup">Signup</Link>
+            </div>
         </div>
+        <div className="searchBar">
+          <SearchBar/>
+        </div>
+      </div>
     )
 }
 
 export default Header; 
-
-/*const Header = () => {
+/*
+const Header = () => {
     return (
       <section className={`self-stretch flex flex-row items-start justify-start pt-0 px-0 pb-[100px] box-border max-w-full text-left text-45xl text-shades-white font-piazzolla lg:pb-[65px] lg:box-border mq750:pb-[42px] mq750:box-border`}>
         <div className={`flex-1 bg-shades-white overflow-hidden flex flex-row items-start justify-start relative max-w-full`}>

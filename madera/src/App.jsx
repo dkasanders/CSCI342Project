@@ -19,8 +19,10 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <Outlet/>
-      <About/>
+      <div className="appBody">
+        <Outlet/>
+        <About/>
+      </div>
       <Footer/>
     </div>
   )

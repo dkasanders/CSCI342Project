@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import "./SearchBar.css";
+import { Link } from "react-router-dom";
+
+
 
 const sortByOptions = {
     'Best Match': 'best_match',
@@ -19,7 +22,7 @@ function SearchBar (props){ // the function takes in props
    
 
     const handleSearch = (event) => { // #4 
-        
+        window.location.href ='/search';
     }
 
   
