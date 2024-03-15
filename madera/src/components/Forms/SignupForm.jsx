@@ -13,13 +13,15 @@ const schema = z.object({
   lastName: z.string().min(1, { message: 'Last name is required' }),
   email: z.string().email({ message: 'Invalid email format' }),
   phoneNumber: z.string().min(10, { message: 'Invalid phone number' }),
-  designation: z.string().min(1, { message: 'Invalid designation' }),
   password: z.string().min(6, { message: 'Password must be at least 6 characters' }),
   confirmPassword: z.string().min(6, { message: 'Password must be at least 6 characters' }),
-  // Add the remaining fields based on the schema
-  // For example:
-  // company: z.string().min(1, { message: 'Company is required' }),
-  // bio: z.string().min(1, { message: 'Bio is required' }),
+  
+  //address schema
+  streetAddress: z.string().min(1, {message: 'Street address is requried'}),
+  city: z.string().min(1, {message: 'City is required'}),
+  zipCode: z.string().min(1, {message: 'Zip code is required'}),
+  state: z.string().min(1, {message: "State is required"})
+
 });
 
 const SignupForm = () => {
@@ -96,13 +98,31 @@ const SignupForm = () => {
           <input type="text" placeholder="1234567890" {...register('phoneNumber')} />
           {errors.phoneNumber && <p className="validation-error">{errors.phoneNumber.message}</p>}
 
-          <label htmlFor="designation"><b>Designation</b></label>
-          <input type="text" placeholder="Your job title" {...register('designation')} />
-          {errors.designation && <p className="validation-error">{errors.designation.message}</p>}
+          <label htmlFor="streetAddress"><b>Street Address</b></label>
+          <input type="text" placeholder="123 main st." {...register('streetAddress')} />
+          {errors.streetAddress && <p className="validation-error">{errors.streetAddress.message}</p>}
+
+          <label htmlFor="city"><b>City</b></label>
+          <input type="text" placeholder="Yakima" {...register('city')} />
+          {errors.city && <p className="validation-error">{errors.city.message}</p>}
+
+          <label htmlFor="city"><b>City</b></label>
+          <input type="text" placeholder="Yakima" {...register('city')} />
+          {errors.city && <p className="validation-error">{errors.city.message}</p>}
+
+          <label htmlFor="zipCode"><b>Zip Code</b></label>
+          <input type="text" placeholder="00000" {...register('zipCode')} />
+          {errors.zipCode && <p className="validation-error">{errors.zipCode.message}</p>}
+
+          <label htmlFor="state"><b>State</b></label>
+          <input type="text" placeholder="Washington" {...register('state')} />
+          {errors.state && <p className="validation-error">{errors.state.message}</p>}
+
 
           <label htmlFor="password"><b>Password</b></label>
-          <input type="password" placeholder="6+ characters" {...register('password')} />
+          <input type="password" placeholder="Password" {...register('password')} />
           {errors.password && <p className="validation-error">{errors.password.message}</p>}
+
 
           <label htmlFor="confirmPassword"><b>Confirm Password</b></label>
           <input type="password" placeholder="Repeat your password" {...register('confirmPassword')} />
