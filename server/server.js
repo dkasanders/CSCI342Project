@@ -134,7 +134,7 @@ app.post("/login", async (req, res) => {
         )
       });
 
-  app.get("/user/address", async (req, res) => {
+  app.get("/user/address/:userid", async (req, res) => {
     const _id = req.params.userid;
     try {
       Models.Address.find({user: _id})
@@ -396,7 +396,7 @@ app.route("/cart")
     });
 
     app.put("/cart/newproduct", async (req, res) => {
-      const {user, product, quantity} = res.body;
+      const {user, product, quantity} = req.body;
       if (!user|| !product || !quantity) {
         return res.status(400).json({ message: "user ID, product ID, and quantity required" });
       }

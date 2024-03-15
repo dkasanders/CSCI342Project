@@ -142,7 +142,14 @@ PUT
     "billing" : "false"
 }
 
-CART
+CART 
+"cart": {
+    "_id": "65f3bf703060e231294b1504",
+    "user": "65f3b38fb294e9b3348c358c",
+    "products": []
+}
+
+
 GET
 
 {
@@ -156,7 +163,7 @@ POST
 
 PUT 
 {
-    "_id": "",
+    "_id": "65f3bf703060e231294b1504",
     "user": "65f3b38fb294e9b3348c358c",
     "products": [{"product": "65f3b5db55e3b67cf805b5b7", "quantity": "3"}]
 }
@@ -165,7 +172,7 @@ PUT
 {
     "user": "65f3b38fb294e9b3348c358c", 
     "product": "65f3b5db55e3b67cf805b5b7",
-    "quantity" : 5
+    "quantity" : "5"
 }
 
 ORDER 
