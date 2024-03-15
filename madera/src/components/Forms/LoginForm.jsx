@@ -79,7 +79,7 @@ const LoginForm = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <Tippy content="Home" animation="fade" arrow={true}>
             <h2 className="title">
-              <Link to="/">Ravenous</Link>
+              <Link to="/">Madera</Link>
             </h2>
           </Tippy>
           <div className="email-login">

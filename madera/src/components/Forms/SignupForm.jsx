@@ -50,9 +50,6 @@ const SignupForm = () => {
     }
 
 
-
-    // Store the successful account in local storage
-    //localStorage.setItem('user', JSON.stringify(data));
     //Call local signup endpoint
     fetch ("http://localhost:3000/api/signup", {
       method: "POST",

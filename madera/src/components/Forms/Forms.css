@@ -27,7 +27,7 @@ a {
   .subtitle a,.forget-pass{
     text-align: center;
     /* font-weight: bold; */
-    color: #cca353;
+    color: #12B886;
   }
   .subtitle{
     text-align: center;
@@ -67,7 +67,7 @@ a {
   }
   
   .cta-btn {
-    background-color: #cca353;
+    background-color: #12B886;
     color: #fff;
     padding:  0.6rem 0.9rem;
     margin-top: 10px;
@@ -82,7 +82,7 @@ a {
   }
   .cta-btn:hover{
     transform: translateY(-2px);
-    background-color: #A9802F;
+    background-color: #12B886;
     color: #fff;
   }
   .forget-pass {
