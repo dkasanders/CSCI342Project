@@ -53,6 +53,10 @@ const addressSchema = new mongoose.Schema({
         type: String,
         require: true
     },
+    city: {
+        type: String,
+        require: true
+    },
     zipCode: {
         type: Number,
         require: true
@@ -77,7 +81,8 @@ const cartSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        require: true
+        require: true,
+        unique: true
     },
     products: [{
             product: {
@@ -140,7 +145,8 @@ const orderSchema = new mongoose.Schema({
         product: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Product'
-        }
+        },
+        quantity: Number
     }],
     note: String,
 
