@@ -109,7 +109,7 @@ app.post("/login", async (req, res) => {
           res.send(user);
         }
         catch (error){
-          response.status(500).send({ error });
+          res.status(500).send({ error });
         }
       })
       //PUT
@@ -124,7 +124,7 @@ app.post("/login", async (req, res) => {
           .then(data => {
             if (!data) {
               res.status(404).send({
-                message: `Cannot update User with id=${id}.`
+                message: `Cannot update User with id=${_id}.`
               });
             }
             else {
@@ -132,6 +132,26 @@ app.post("/login", async (req, res) => {
             }
           }
         )
+      })
+      .delete(async (req, res) => {
+        if (!req.body) {
+          return res.status(400).send({
+            message: "Data to remove can not be empty!"
+          });
+        }
+        const {_id} = req.body
+        try {
+          Models.User.findByIdAndDelete(_id);
+          //Cascade
+          Models.Cart.deleteOne({user: _id});
+          Models.Address.deleteMany({user: _id});
+          //Return complete status
+          res.status(201).json({message: "User deleted successfully"})
+        }
+        catch (error) {
+          res.status(500).send({ message: error.message });
+        }
+          
       });
 
   app.get("/user/address/:userid", async (req, res) => {
@@ -262,6 +282,22 @@ app.post("/login", async (req, res) => {
         }
         )
     })
+    .delete(async (req, res) => {
+      if (!req.body) {
+        return res.status(400).send({
+          message: "Data to remove can not be empty!"
+        });
+      }
+      const {_id} = req.body
+      try {
+        Models.Product.findByIdAndDelete(_id);
+        //Return complete status
+        res.status(201).json({message: "Product deleted successfully"})
+      }
+      catch (error) {
+        res.status(500).send({ message: error.message });
+      }
+    });
 
 
 //--------------------ADDRESS API------------------
@@ -323,6 +359,22 @@ app.route("/address")
         }
       )
     })
+    .delete(async (req, res) => {
+      if (!req.body) {
+        return res.status(400).send({
+          message: "Data to remove can not be empty!"
+        });
+      }
+      const {_id} = req.body
+      try {
+        Models.Address.findByIdAndDelete(_id);
+        //Return complete status
+        res.status(201).json({message: "Address deleted successfully"})
+      }
+      catch (error) {
+        res.status(500).send({ message: error.message });
+      }
+    });
 
 
 
@@ -393,6 +445,22 @@ app.route("/cart")
           }
         }
       )
+    })
+    .delete(async (req, res) => {
+      if (!req.body) {
+        return res.status(400).send({
+          message: "Data to remove can not be empty!"
+        });
+      }
+      const {_id} = req.body
+      try {
+        Models.Cart.findByIdAndDelete(_id);
+        //Return complete status
+        res.status(201).json({message: "Cart deleted successfully"})
+      }
+      catch (error) {
+        res.status(500).send({ message: error.message });
+      }
     });
 
     app.put("/cart/newproduct", async (req, res) => {
@@ -501,6 +569,22 @@ app.route("/cart")
         }
       )
     })
+    .delete(async (req, res) => {
+      if (!req.body) {
+        return res.status(400).send({
+          message: "Data to remove can not be empty!"
+        });
+      }
+      const {_id} = req.body
+      try {
+        Models.Order.findByIdAndDelete(_id);
+        //Return complete status
+        res.status(201).json({message: "Order deleted successfully"})
+      }
+      catch (error) {
+        res.status(500).send({ message: error.message });
+      }
+    });
 
 
   // ---------------------PATHS-------------------------------
