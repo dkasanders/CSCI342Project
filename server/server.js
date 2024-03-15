@@ -234,8 +234,8 @@ app.post("/login", async (req, res) => {
             price,
             inventory,
           });
-          const data = product.save();
-          res.status(201).json({message: "Product created successfully", data});
+          product.save();
+          res.status(201).json({message: "Product created successfully", product: { ...product._doc}});
       } catch (err) {
         return res.status(500).json({ message: err.message || "Error while creating product" });
       }
@@ -288,7 +288,7 @@ app.route("/address")
       }
       const _id = new mongoose.Types.ObjectId();
       try {
-          const address = new Models.Product({
+          const address = new Models.Address({
             _id,
             user, 
             streetAddress,   
@@ -297,8 +297,8 @@ app.route("/address")
             primary,
             billing
           });
-          const data = address.save();
-          res.status(201).json({message: "Address created successfully", data});
+          address.save();
+          res.status(201).json({message: "Address created successfully", address: { ...address._doc}});
       } catch (err) {
         return res.status(500).json({ message: err.message || "Error while creating product" });
       }
@@ -363,13 +363,13 @@ app.route("/cart")
       }
       const _id = new mongoose.Types.ObjectId();
       try {
-          const cart = new Models.Product({
+          const cart = new Models.Cart({
             _id,
             user, 
             products: []
           });
-          const data = cart.save();
-          res.status(201).json({message: "Cart created successfully", data});
+          cart.save();
+          res.status(201).json({message: "Cart created successfully", cart: { ...cart._doc}});
       } catch (err) {
         return res.status(500).json({ message: err.message || "Error while creating product" });
       }
@@ -465,15 +465,15 @@ app.route("/cart")
       }
       const _id = new mongoose.Types.ObjectId();
       try {
-        const order = new Models.Product({
+        const order = new Models.Order({
           _id,
           orderNumber,
           user,
           address,
           products
         });
-        const data = order.save();
-        res.status(201).json({message: "Order submitted successfully", data});
+        order.save();
+        res.status(201).json({message: "Order submitted successfully", order: { ...order._doc}});
     } catch (err) {
       return res.status(500).json({ message: err.message || "Error while creating Order" });
     }

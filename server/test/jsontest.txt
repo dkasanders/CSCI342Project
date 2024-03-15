@@ -102,10 +102,22 @@ PUT
 
 ADDRESS
 
+"address": {
+        "_id": "65f3bd689110c4c2a65d5926",
+        "user": "65f3b38fb294e9b3348c358c",
+        "streetAddress": " 111 main st.",
+        "zipCode": 98222,
+        "state": "washington",
+        "primary": true,
+        "billing": true
+    }
+
+
+
 /address
 GET 
 {
-    "_id": ""
+    "_id": "65f3bd689110c4c2a65d5926"
 }
 POST 
 {
@@ -120,7 +132,7 @@ POST
 
 PUT 
 {
-    "_id": "",
+    "_id": "65f3bd689110c4c2a65d5926",
     "user": "65f3b38fb294e9b3348c358c",
     "streetAddress": " 222 second st.",
     "city": "portland",
@@ -146,13 +158,13 @@ PUT
 {
     "_id": "",
     "user": "65f3b38fb294e9b3348c358c",
-    "products": [] (product ids, quantity)
+    "products": [{"product": "65f3b5db55e3b67cf805b5b7", "quantity": "3"}]
 }
 
 /cart/newproduct
 {
     "user": "65f3b38fb294e9b3348c358c", 
-    "product": "", (product ID)
+    "product": "65f3b5db55e3b67cf805b5b7",
     "quantity" : 5
 }
 
@@ -166,13 +178,13 @@ POST
 {
     "orderNumber" : 10,
     "user" : "65f3b38fb294e9b3348c358c", 
-    "address" : "", (addressid)
-    "products": [] (product ids)
+    "address" : "65f3bd689110c4c2a65d5926", 
+    "products": [{"product": "65f3b5db55e3b67cf805b5b7"}] 
 }
 PUT 
 {
     "_id": "" (orderid)
     "user" : "65f3b38fb294e9b3348c358c",
-    "address" : "", (addressid)
-    "products": [] (product ids)
+    "address" : "65f3bd689110c4c2a65d5926",
+    "products": [{"product": "65f3b5db55e3b67cf805b5b7"}]
 }
