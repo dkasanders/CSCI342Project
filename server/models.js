@@ -53,6 +53,10 @@ const addressSchema = new mongoose.Schema({
         type: String,
         require: true
     },
+    city: {
+        type: String,
+        require: true
+    },
     zipCode: {
         type: Number,
         require: true

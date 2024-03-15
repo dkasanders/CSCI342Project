@@ -1,0 +1,152 @@
+SIGN UP
+{
+    "firstName": "Alex",
+    "lastName": "Socha",
+    "email" : "test@test.test",
+    "phoneNumber" : 0123456789,
+    "password" : "testtest",
+    "confirmPassword" : "testtest"
+}
+
+LOGIN
+{
+    "email" : "test@test.test",
+    "password" : "password"
+}
+
+USER 
+GET
+{
+    "_id": ""
+}
+PUT 
+{
+    "_id": "",
+    "firstName": "thomas",
+    "lastName": "wyndham",
+    "phoneNumber": 5555555555
+}
+
+user/address/:userid
+{
+
+}
+
+user/orders/:userid
+{
+
+}
+
+PRODUCT
+/product/all
+{
+
+}
+
+/product
+GET
+{
+    "_id": ""
+}
+POST
+{
+    "name": "Purple Heart", 
+    "description": "A distinct Purple wood, Caused by the oxidization of iron in the wood. Dimensions 12 x 12 x 2", 
+    "categories": {"Purple", "Heart", "Soft"}, 
+    "images": [], 
+    "price" : 50,
+    "inventory" : "5"
+}
+
+PUT 
+{
+    "_id" : 
+    "name": "Purple Heart", 
+    "description": "A distinct Purple wood, Caused by the oxidization of iron in the wood. Dimensions 12 x 12 x 2", 
+    "categories": ["Purple", "Heart", "Soft"], 
+    "images": [], 
+    "price" : 50,
+    "inventory" : 5
+}
+
+/product/catagory/:catagory
+{
+    
+}
+
+ADDRESS
+
+/address
+GET 
+{
+    "_id": ""
+}
+POST 
+{
+    "user": "", (userid)
+    "streetAddress": " 111 main st.",
+    "city": "seattle",
+    "zipCode" : 98222,
+    "state" : "washington",
+    "primary" : "true", 
+    "billing" : "true"
+}
+
+PUT 
+{
+    "_id": "",
+    "user": "", (userid)
+    "streetAddress": " 222 second st.",
+    "city": "portland",
+    "zipCode" : 98223,
+    "state" : "oregon",
+    "primary" : "false", 
+    "billing" : "false"
+}
+
+CART
+GET
+
+{
+    "user": "" (userid)
+}
+
+POST
+{
+    "user" : "" (userid)
+}
+
+PUT 
+{
+    "_id": "",
+    "user": "", (userid)
+    "products": [] (product ids, quantity)
+}
+
+/cart/newproduct
+{
+    "user": "", (userid)
+    "product": "", (product ID)
+    "quantity" : 5
+}
+
+ORDER 
+GET 
+{
+    "_id" : "", (orderid)
+}
+
+POST 
+{
+    "orderNumber" : 10,
+    "user" : "", (userid)
+    "address" : "", (addressid)
+    "products": [] (product ids)
+}
+PUT 
+{
+    "_id": "" (orderid)
+    "user" : "", (userid)
+    "address" : "", (addressid)
+    "products": [] (product ids)
+}

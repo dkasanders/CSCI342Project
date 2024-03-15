@@ -118,7 +118,7 @@ app.post("/login", async (req, res) => {
           });
         }
         const {_id} = req.body
-        Models.User.findById(_id,  req.body)
+        Models.User.findById(_id, req.body)
           .then(data => {
             if (!data) {
               res.status(404).send({
@@ -146,7 +146,6 @@ app.post("/login", async (req, res) => {
           res.send(data)
         }
       })
-
     }
     catch (error){
       response.status(500).send({ message: error.message });
@@ -439,7 +438,7 @@ app.route("/cart")
       }
     })
     .post(async (req, res) => {
-      const {orderNumber, user, address} = req.body;
+      const {orderNumber, user, address, products} = req.body;
       try {
         const usercheck = await Models.User.findOne({ _id: user});
         if (!usercheck) {
@@ -463,7 +462,7 @@ app.route("/cart")
           orderNumber,
           user,
           address,
-          products: []
+          products
         });
         const data = order.save();
         res.status(201).json({message: "Order submitted successfully", data});
