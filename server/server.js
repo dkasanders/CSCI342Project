@@ -216,6 +216,31 @@ app.post("/login", async (req, res) => {
       res.status(500).send({ message: error.message });
     }
   });
+
+  app.get("/product/byname", async (req, res) => {
+    try {
+      const name = req.body;
+      if (!name) {
+        res.status(400).json({ message: "no name provided"});
+      }
+      const products = await Models.Product.find({name: name});
+      return res.send(products);
+    }
+    catch (error){
+      return res.status(500).send({ message: error.message });
+    }
+  });
+
+  app.get ("/product/category/:category", async (req, res) => {
+    const category = req.params.category;
+    try {
+      const products = await Models.Product.find( {categories: {$elemMatch: {category: category}}});
+      res.send(products);
+    }
+    catch (error){
+      res.status(500).send({ message: error.message });
+    }
+  });
   
   app.route("/product")
     .get(async (req, res) => {
