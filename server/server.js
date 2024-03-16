@@ -640,10 +640,9 @@ app.get("/images", (req, res) => {
   const images = axios.get("https://api.imgur.com/3/account/icrawford1408/album/RmBgX9F", {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ea768a282313aa9685229ab9a3537294d062a33b`,
+      'Authorization': `Bearer ${process.env.BEARER_TOKEN}`,
   }}).then(response => {
-    console.log(response.data);
-    res.send(response.data.images);
+    res.send(response.data);
   })});
 
 // ---------------------PATHS-------------------------------
