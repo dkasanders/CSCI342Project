@@ -19,9 +19,23 @@ const Product = ({ productData }) => {
     const imageData = productData.images[0].data;
     const imageType = productData.images[0].type;
 
-   
-    //const imageUrl;
-    //updateImage(imageUrl);
+    React.useEffect(() => {
+        fetch("https://api.imgur.com/3/account/icrawford1408/album/RmBgX9F", { 
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          })
+          .then(response => response.json())
+          .then(data => {
+            const matchingImage = data.images.find(image => {
+                return image.description === productData.name.replace(/\s+/g, '_').toLowerCase();
+            });
+            if (matchingImage) {
+                updateImage(matchingImage.link);
+            }
+          })
+     }, []);
 
    
 
