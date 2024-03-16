@@ -110,24 +110,26 @@ app.get("/user/:_id", async (req, res) => {
 app.route("/user")
   //PUT
   .put(async (req, res) => {
-    if (!req.body) {
-      return res.status(400).send({
-        message: "Data to update can not be empty!"
-      });
-    }
-    const {_id} = req.body
-    Models.User.findByIdAndUpdate(_id, req.body)
-      .then(data => {
-        if (!data) {
-          res.status(404).send({
-            message: `Cannot update User with id=${_id}.`
-          });
-        }
-        else {
-          res.status(201).json({message: "User updated successfully", data})
-        }
+    try{
+      if (!req.body) {
+        return res.status(400).send({
+          message: "Data to update can not be empty!"
+        });
       }
-    )
+      const {_id} = req.body
+      const data = await Models.User.findByIdAndUpdate(_id, req.body)
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot update User with id=${_id}.`
+        });
+      }
+      const updated = await Models.User.findById(_id);
+      return res.status(201).json({message: "User updated successfully", data});  
+    }
+    catch (error) {
+      res.status(500).send({ message: error.message });
+    }
+        
   })
   .delete(async (req, res) => {
     if (!req.body) {
@@ -285,24 +287,25 @@ app.route("/product")
   .put(async (req, res) => {
     // find one product and update
     // return created response with the updated object or an error
-    if (!req.body) {
-      return res.status(400).send({
-        message: "Data to update can not be empty!"
-      });
-    }
-    const {_id} = req.body
-    Models.Product.findByIdAndUpdate(_id,  req.body)
-      .then(data => {
-        if (!data) {
-          res.status(404).send({
-            message: `Cannot update Product with id=${id}.`
-          });
-        }
-        else {
-          res.status(201).json({message: "Product updated successfully", data})
-        }
+    try{
+      if (!req.body) {
+        return res.status(400).send({
+          message: "Data to update can not be empty!"
+        });
       }
-      )
+      const {_id} = req.body
+      const data = await Models.Product.findByIdAndUpdate(_id, req.body)
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot update Product with id=${_id}.`
+        });
+      }
+      const updated = await Models.Product.findById(_id);
+      return res.status(201).json({message: "Product updated successfully", data});  
+    }
+    catch (error) {
+      res.status(500).send({ message: error.message });
+    }
   })
   .delete(async (req, res) => {
     if (!req.body) {
@@ -365,24 +368,25 @@ app.route("/address")
     }
   })
   .put(async (req, res) => {
-    if (!req.body) {
-      return res.status(400).send({
-        message: "Data to update can not be empty!"
-      });
-    }
-    const {_id} = req.body
-    Models.Address.findByIdAndUpdate(_id, req.body)
-      .then(data => {
-        if (!data) {
-          res.status(404).send({
-            message: `Cannot update Address with id=${id}.`
-          });
-        }
-        else {
-          res.status(201).json({message: "Address updated successfully", data})
-        }
+    try{
+      if (!req.body) {
+        return res.status(400).send({
+          message: "Data to update can not be empty!"
+        });
       }
-    )
+      const {_id} = req.body
+      const data = await Models.Address.findByIdAndUpdate(_id, req.body)
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot update Address with id=${_id}.`
+        });
+      }
+      const updated = await Models.Address.findById(_id);
+      return res.status(201).json({message: "Address updated successfully", data});  
+    }
+    catch (error) {
+      res.status(500).send({ message: error.message });
+    }
   })
   .delete(async (req, res) => {
     if (!req.body) {
@@ -453,24 +457,25 @@ app.route("/cart")
     }
   })
   .put(async (req, res) => {
-    if (!req.body) {
-      return res.status(400).send({
-        message: "Data to update can not be empty!"
-      });
-    }
-    const {_id} = req.body
-    Models.Cart.findByIdAndUpdate(_id,  req.body)
-      .then(data => {
-        if (!data) {
-          res.status(404).send({
-            message: `Cannot update Cart with id=${id}.`
-          });
-        }
-        else {
-          res.status(201).json({message: "Cart updated successfully", data})
-        }
+    try{
+      if (!req.body) {
+        return res.status(400).send({
+          message: "Data to update can not be empty!"
+        });
       }
-    )
+      const {_id} = req.body
+      const data = await Models.Cart.findByIdAndUpdate(_id, req.body)
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot update Cart with id=${_id}.`
+        });
+      }
+      const updated = await Models.Cart.findById(_id);
+      return res.status(201).json({message: "Cart updated successfully", data});  
+    }
+    catch (error) {
+      res.status(500).send({ message: error.message });
+    }
   })
   .delete(async (req, res) => {
     if (!req.body) {
@@ -577,24 +582,25 @@ app.route("/order")
 
   })
   .put(async (req, res) => {
-    if (!req.body) {
-      return res.status(400).send({
-        message: "Data to update can not be empty!"
-      });
-    }
-    const {_id} = req.body
-    Models.Order.findByIdAndUpdate(_id, req.body)
-      .then(data => {
-        if (!data) {
-          res.status(404).send({
-            message: `Cannot update Order with id=${_id}.`
-          });
-        }
-        else {
-          res.status(201).json({message: "Order updated successfully", data})
-        }
+    try{
+      if (!req.body) {
+        return res.status(400).send({
+          message: "Data to update can not be empty!"
+        });
       }
-    )
+      const {_id} = req.body
+      const data = await Models.Order.findByIdAndUpdate(_id, req.body)
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot update Order with id=${_id}.`
+        });
+      }
+      const updated = await Models.Order.findById(_id);
+      return res.status(201).json({message: "Order updated successfully", data});  
+    }
+    catch (error) {
+      res.status(500).send({ message: error.message });
+    }
   })
   .delete(async (req, res) => {
     if (!req.body) {
