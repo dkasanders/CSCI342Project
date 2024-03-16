@@ -506,10 +506,11 @@ app.put("/cart/newproduct", async (req, res) => {
       res.status(404).send({
         message: "No product found"
       });
+      
     }
     const cart = await Models.Cart.findOne({user: user});
-
-    const newproduct = {product: product, quantity: quantity};
+    const name = productcheck.name;
+    const newproduct = {product: product, name: name, quantity: quantity};
     cart.products.push(newproduct);
     cart.save();
     res.status(201).send({message: "Cart updated successfully"})
