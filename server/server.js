@@ -100,7 +100,7 @@ app.get("/user/:_id", async (req, res) => {
   const _id = req.params._id;
   try {
     const user = await Models.User.findById(_id);
-    res.send(user);
+    res.status(200).send(user);
   }
   catch (error){
     res.status(500).send({ error });
@@ -124,7 +124,7 @@ app.route("/user")
         });
       }
       const updated = await Models.User.findById(_id);
-      return res.status(201).json({message: "User updated successfully", data});  
+      return res.status(200).json({message: "User updated successfully", data});  
     }
     catch (error) {
       res.status(500).send({ message: error.message });
@@ -144,7 +144,7 @@ app.route("/user")
       Models.Cart.deleteOne({user: _id});
       Models.Address.deleteMany({user: _id});
       //Return complete status
-      res.status(201).json({message: "User deleted successfully"})
+      res.status(200).json({message: "User deleted successfully"})
     }
     catch (error) {
       res.status(500).send({ message: error.message });
@@ -163,7 +163,7 @@ app.get("/user/address/:_id", async (req, res) => {
         })
       }
       else {
-        res.send(data)
+        res.status(200).send(data)
       }
     })
   }
@@ -175,18 +175,16 @@ app.get("/user/address/:_id", async (req, res) => {
 app.get("/user/orders/:_id", async (req, res) => {
   const _id = req.params.userid;
   try {
-    Models.Order.find({user: _id})
-    .then(data => {
-      if (!data) {
-        res.status(404).send({
-          message: `Cannot find orders for User with id=${id}.`
-        })
-      }
-      else {
-        res.send(data)
-      }
-    })
-
+    const orders = Models.Order.find({user: _id})
+    
+    if (!orders) {
+      res.status(404).send({
+        message: `Cannot find orders for User with id=${id}.`
+      })
+    }
+    else {
+      res.status(200).send(data)
+    }
   }
   catch (error){
     res.status(500).send({ message: error.message });
@@ -197,7 +195,7 @@ app.get("/user/orders/:_id", async (req, res) => {
 app.get("/product/all", async (req, res) => {
   try {
     const products = await Models.Product.find({});
-    res.send(products);
+    res.status(200).send(products);
   }
   catch (error){
     res.status(500).send({ message: error.message });
@@ -208,7 +206,7 @@ app.get ("/product/category/:category", async (req, res) => {
   const category = req.params.category;
   try {
     const products = await Models.Product.find( {categories: {$elemMatch: {category: category}}});
-    res.send(products);
+    res.status(200).send(products);
   }
   catch (error){
     res.status(500).send({ message: error.message });
@@ -222,7 +220,7 @@ app.get("/product/byname/:name", async (req, res) => {
       res.status(400).json({ message: "no name provided"});
     }
     const products = await Models.Product.find({name: name});
-    return res.send(products);
+    return res.status(200).send(products);
   }
   catch (error){
     return res.status(500).send({ message: error.message });
@@ -233,7 +231,7 @@ app.get ("/product/category/:category", async (req, res) => {
   const category = req.params.category;
   try {
     const products = await Models.Product.find( {categories: {$elemMatch: {category: category}}});
-    res.send(products);
+    res.status(200).send(products);
   }
   catch (error){
     res.status(500).send({ message: error.message });
@@ -252,7 +250,7 @@ app.get("/product/:_id", async (req, res) => {
   }
   try {
     const product = await Models.Product.findById(_id);
-    res.send(product);
+    res.status(200).send(product);
   }
   catch (error){
     res.status(500).send({ message: error.message });
@@ -301,7 +299,7 @@ app.route("/product")
         });
       }
       const updated = await Models.Product.findById(_id);
-      return res.status(201).json({message: "Product updated successfully", data});  
+      return res.status(200).json({message: "Product updated successfully", data});  
     }
     catch (error) {
       res.status(500).send({ message: error.message });
@@ -317,7 +315,7 @@ app.route("/product")
     try {
       Models.Product.findByIdAndDelete(_id);
       //Return complete status
-      res.status(201).json({message: "Product deleted successfully"})
+      res.status(200).json({message: "Product deleted successfully"})
     }
     catch (error) {
       res.status(500).send({ message: error.message });
@@ -336,7 +334,7 @@ app.get("/address/:_id", async (req, res) => {
   }
   try {
     const address = await Models.Address.findById(_id);
-    res.send(address);
+    res.status(200).send(address);
   }
   catch (error){
     res.status(500).send({ message: error.message });
@@ -382,7 +380,7 @@ app.route("/address")
         });
       }
       const updated = await Models.Address.findById(_id);
-      return res.status(201).json({message: "Address updated successfully", data});  
+      return res.status(200).json({message: "Address updated successfully", data});  
     }
     catch (error) {
       res.status(500).send({ message: error.message });
@@ -398,7 +396,7 @@ app.route("/address")
     try {
       Models.Address.findByIdAndDelete(_id);
       //Return complete status
-      res.status(201).json({message: "Address deleted successfully"})
+      res.status(200).json({message: "Address deleted successfully"})
     }
     catch (error) {
       res.status(500).send({ message: error.message });
@@ -419,7 +417,7 @@ app.get("/cart/:userid", async (req, res) => {
   }
   try {
     const cart = await Models.Cart.findOne({user: user});
-    res.send(cart);
+    res.status(200).send(cart);
   }
   catch (error){
     res.status(500).send({ message: error.message });
@@ -471,7 +469,7 @@ app.route("/cart")
         });
       }
       const updated = await Models.Cart.findById(_id);
-      return res.status(201).json({message: "Cart updated successfully", data});  
+      return res.status(200).json({message: "Cart updated successfully", data});  
     }
     catch (error) {
       res.status(500).send({ message: error.message });
@@ -518,7 +516,7 @@ app.put("/cart/newproduct", async (req, res) => {
     const newproduct = {product: product, name: name, quantity: quantity};
     cart.products.push(newproduct);
     cart.save();
-    res.status(201).send({message: "Cart updated successfully"})
+    res.status(200).send({message: "Cart updated successfully"})
   }
   catch (error) {
     res.status(500).send({ message: error.message });
@@ -537,7 +535,7 @@ app.get("/order/:_id", async (req, res) => {
   }
   try {
     const order = await Models.Order.findOne({_id: _id});
-    res.send(order);
+    res.status(200).send(order);
   }
   catch (error){
     res.status(500).send({ message: error.message });
@@ -596,7 +594,7 @@ app.route("/order")
         });
       }
       const updated = await Models.Order.findById(_id);
-      return res.status(201).json({message: "Order updated successfully", data});  
+      return res.status(200).json({message: "Order updated successfully", data});  
     }
     catch (error) {
       res.status(500).send({ message: error.message });
@@ -612,7 +610,7 @@ app.route("/order")
     try {
       Models.Order.findByIdAndDelete(_id);
       //Return complete status
-      res.status(201).json({message: "Order deleted successfully"})
+      res.status(200).json({message: "Order deleted successfully"})
     }
     catch (error) {
       res.status(500).send({ message: error.message });
