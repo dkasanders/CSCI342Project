@@ -8,6 +8,7 @@ const initialUserState = {
   designation: '',
   phoneNumber: '',
   avatar: '',
+  id: '',
 }
 
 const initialState = {

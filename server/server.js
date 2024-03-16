@@ -10,6 +10,7 @@ const Models = require("./models.js")
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const axios = require('axios');
 
 
 app.use(cors());
@@ -510,7 +511,8 @@ app.put("/cart/newproduct", async (req, res) => {
     }
     const cart = await Models.Cart.findOne({user: user});
     const name = productcheck.name;
-    const newproduct = {product: product, name: name, quantity: quantity};
+    const price = productcheck.price;
+    const newproduct = {product: product, name: name, quantity: quantity, price: price};
     cart.products.push(newproduct);
     cart.save();
     res.status(201).send({message: "Cart updated successfully"})
@@ -614,10 +616,21 @@ app.route("/order")
   });
 
 
+app.get("/images", (req, res) => {
+  const images = axios.get("https://api.imgur.com/3/account/icrawford1408/album/RmBgX9F", {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ea768a282313aa9685229ab9a3537294d062a33b`,
+  }}).then(response => {
+    console.log(response.data);
+    res.send(response.data.images);
+  })});
+
 // ---------------------PATHS-------------------------------
 app.get("/", (req, res) => {
   res.send("Root Path");
 
 });
+
 
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

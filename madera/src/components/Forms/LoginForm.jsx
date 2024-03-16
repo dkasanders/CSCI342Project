@@ -17,6 +17,7 @@ const formSchema = z.object({
 }); // GOOD
 
 const LoginForm = () => {
+
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: zodResolver(formSchema)
   }); // GOOD
@@ -54,6 +55,7 @@ const LoginForm = () => {
         phoneNumber: data?.user?.phoneNumber || "",
         designation: data?.user?.designation || "",
         avatar: "",
+        id: data?.user?._id || "",
       }));
       navigate("/account"); // Navigate to account page on success
     })
