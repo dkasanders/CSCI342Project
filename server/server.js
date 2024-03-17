@@ -426,7 +426,7 @@ app.get("/cart/:userid", async (req, res) => {
   try {
     const cart = await Models.Cart.findOne({user: user});
     if (!cart) {
-      res.status(401).json({message: "no cart found"});
+      res.status(401).json({message: user});
     }
     res.status(200).json(cart);
   }
@@ -437,12 +437,12 @@ app.get("/cart/:userid", async (req, res) => {
 
 app.route("/cart")
   .post(async (req, res) => {
-    const id = req.body.id;
-    if (!id) {
+    const userid = req.body.id;
+    if (!userid) {
       return res.status(400).json({ message: "user Id required" });
     }
     try {
-      const usercheck = await Models.User.findOne({ _id: id});
+      const usercheck = await Models.User.findOne({ _id: userid});
       if (!usercheck) {
         res.status(404).json({
           message: "No User found"
@@ -456,7 +456,7 @@ app.route("/cart")
     try {
         const cart = new Models.Cart({
           _id,
-          id, 
+          userid: usercheck._id, 
           products: []
         });
         cart.save();
