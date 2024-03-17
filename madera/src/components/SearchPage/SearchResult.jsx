@@ -12,7 +12,7 @@ const SearchPage = ({result}) => {
     const user = JSON.parse(localStorage.getItem("user"));
     const id = user.id
 
-    const getCurrentCart = () => {
+    const getCurrentCart = async () => {
         if(!user) {
             navigate('/login');
         }
@@ -29,8 +29,8 @@ const SearchPage = ({result}) => {
         })
     }
     
-    const handleButtonClick = () => {
-        const currentCart = getCurrentCart();
+    const handleButtonClick = async () => {
+        const currentCart = await getCurrentCart();
         console.log(currentCart);
         if(currentCart === undefined) {
             //No cart found, we have to make a cart.

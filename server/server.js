@@ -460,7 +460,7 @@ app.route("/cart")
           products: []
         });
         cart.save();
-        res.status(201).json({message: "Cart created successfully", cart: { ...cart._doc}});
+        res.status(201).json({message: "Cart created successfully", cart: cart});
     } catch (err) {
       return res.status(500);
     }
