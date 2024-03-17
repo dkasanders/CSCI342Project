@@ -4,7 +4,6 @@ import Header from "../Header/Header";
 function Item() {
     return (
         <>
-        <Header/>
         <p>Item Page</p>
         </>
     )
