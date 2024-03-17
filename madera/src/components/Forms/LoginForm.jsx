@@ -48,15 +48,21 @@ const LoginForm = () => {
       localStorage.setItem("token", data.token); // Store token in local storage
       toast.success("Login successful"); // Show success message
       // Update redux store with user info
+      const user = {
+        firstName: data?.user?.firstName || "",
+        lastName: data?.user?.lastName || "",
+        email: data?.user?.email || "",
+        phoneNumber: data?.user?.phoneNumber || "",
+        id: data?.user?._id || "",
+      }
       dispatch(login({
         firstName: data?.user?.firstName || "",
         lastName: data?.user?.lastName || "",
         email: data?.user?.email || "",
         phoneNumber: data?.user?.phoneNumber || "",
-        designation: data?.user?.designation || "",
-        avatar: "",
         id: data?.user?._id || "",
       }));
+      localStorage.setItem("user", JSON.stringify(user));
       navigate("/account"); // Navigate to account page on success
     })
     .catch(error => {

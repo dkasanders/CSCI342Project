@@ -437,12 +437,12 @@ app.get("/cart/:userid", async (req, res) => {
 
 app.route("/cart")
   .post(async (req, res) => {
-    const {user} = req.body;
-    if (!user) {
+    const id = req.body.id;
+    if (!id) {
       return res.status(400).json({ message: "user Id required" });
     }
     try {
-      const usercheck = await Models.User.findOne({ _id: user});
+      const usercheck = await Models.User.findOne({ _id: id});
       if (!usercheck) {
         res.status(404).json({
           message: "No User found"
@@ -456,7 +456,7 @@ app.route("/cart")
     try {
         const cart = new Models.Cart({
           _id,
-          user, 
+          id, 
           products: []
         });
         cart.save();

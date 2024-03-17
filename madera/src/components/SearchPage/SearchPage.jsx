@@ -10,14 +10,12 @@ const SearchPage = ({searchKey}) => {
     const [results, updateResults] = useState([])
     const isEmpty = (searchKey.trim() === '');
     let url = "";
-    console.log(isEmpty);
 
     if(isEmpty) {
         url = 'http://localhost:3000/product/all';
     } else {
         url = `http://localhost:3000/product/byname/${searchKey}`;
     }
-
 
     fetch(url)
     .then(response => {
@@ -34,8 +32,6 @@ const SearchPage = ({searchKey}) => {
     })
 
     
-    console.log("results: ", results);
-
 
     return (
         <div>

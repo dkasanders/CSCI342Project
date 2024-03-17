@@ -38,7 +38,7 @@ const router = createBrowserRouter(
       <Route path="/signup" element={<SignupForm />} />
       {/* Use the ProtectedRoute for routes that require authentication */}
       <Route path="*" element={<PageNotFound />} />
-      <Route path= "/search" element={<SearchPage searchKey="Purple Heart"/>}/> <Route/>
+      <Route path= "/search" element={<SearchPage searchKey=""/>}/> <Route/>
       <Route path= "/cart" element={<Cart/>}/> <Route/>
       <Route path="/orders" element={<Orders/>}/><Route/>
       <Route path="/account" element={<Account/>}/><Route/>
