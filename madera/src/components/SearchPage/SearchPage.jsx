@@ -16,8 +16,10 @@ const SearchPage = ({searchKey}) => {
     } else {
         url = `http://localhost:3000/product/byname/${searchKey}`;
     }
-
-    fetch(url)
+    fetch(url, {
+        method: "GET",
+        headers: {'Content-Type': 'application/json'}
+    })
     .then(response => {
         if (!response.ok) {
             throw new Error("Network response failed.");

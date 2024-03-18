@@ -21,15 +21,16 @@ const SearchPage = ({result}) => {
             if(!response.ok) {
                 throw new Error("Network response failed.");
             }
-            console.log("response:", response.json());
+            console.log("CART response:", response.json());
             return response.json();
         })
         .catch(error => {
-            console.error("There was a problem with fetching: ", error);
+            console.error("There was a problem with fetching cart: ", error);
         })
     }
     
     const handleButtonClick = async () => {
+        console.log("USER:", user.id);
         const currentCart = await getCurrentCart();
         console.log(currentCart);
         if(currentCart === undefined) {

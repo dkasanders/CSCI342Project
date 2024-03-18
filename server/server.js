@@ -100,12 +100,14 @@ app.get("/user/:_id", async (req, res) => {
   const _id = req.params._id;
   try {
     const user = await Models.User.findById(_id);
+    console.log("user: ", user);
     if (!user) {
       res.status(401).json({message: "no user found"});
     }
     res.status(200).json(user);
   }
   catch (error){
+    console.log("error: ", error);
     return res.status(500);
   }
 });
@@ -424,7 +426,7 @@ app.get("/cart/:userid", async (req, res) => {
     });
   }
   try {
-    const cart = await Models.Cart.findOne({user: user});
+    const cart = await Models.Cart.findOne({userid: user});
     if (!cart) {
       res.status(401).json({message: user});
     }
@@ -438,11 +440,13 @@ app.get("/cart/:userid", async (req, res) => {
 app.route("/cart")
   .post(async (req, res) => {
     const userid = req.body.id;
+    console.log("making cart for user", userid);
     if (!userid) {
       return res.status(400).json({ message: "user Id required" });
     }
     try {
       const usercheck = await Models.User.findOne({ _id: userid});
+      console.log("usercheck: ", usercheck);
       if (!usercheck) {
         res.status(404).json({
           message: "No User found"
@@ -450,10 +454,13 @@ app.route("/cart")
       }
     }
     catch (error) {
+      console.log("error ", error);
       res.status(500);
     }
     const _id = new mongoose.Types.ObjectId();
     try {
+        const usercheck = await Models.User.findOne({ _id: userid});
+        console.log("id: ", usercheck._id);
         const cart = new Models.Cart({
           _id,
           userid: usercheck._id, 
@@ -462,6 +469,7 @@ app.route("/cart")
         cart.save();
         res.status(201).json({message: "Cart created successfully", cart: cart});
     } catch (err) {
+      console.log("error cart making ", err);
       return res.status(500);
     }
   })
