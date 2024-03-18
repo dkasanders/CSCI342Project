@@ -48,6 +48,13 @@ app.post("/signup", async (req, res) => {
 
       // Save the new user instance to the database.
       user.save();
+      const cart = new Models.Cart({
+        _id,
+        user: user._id, 
+        products: []
+      });
+      cart.save();
+
       res.status(201).json({message: "User created successfully", user: user});
     });
   } catch (err) {
@@ -66,6 +73,7 @@ app.post("/login", async (req, res) => {
           if (!user) {
             return res.status(401).json({ message: "User does not exist" });
           }
+          const cart = await Models.Cart.findOne({user: user._id});
           // Use bcrypt to compare the provided password with the hashed password stored in the database.
           bcrypt.compare(password, user.password, (err, isMatch) => {
           // If an error occurs during the comparison, return a 500 Internal Server Error status.
@@ -84,9 +92,11 @@ app.post("/login", async (req, res) => {
               expiresIn: "1h",
           });
 
+          
+          
           // Return a 200 OK status with a success message, the generated token, and the user object.
           // This indicates a successful login.
-          res.status(200).json({ message: "Login successful", token, user: user });
+          res.status(200).json({ message: "Login successful", token, user: user, cart: cart});
         });
     } catch (err) {
         // If an error occurs while finding the user, return a 500 Internal Server Error status.
@@ -463,7 +473,7 @@ app.route("/cart")
         console.log("id: ", usercheck._id);
         const cart = new Models.Cart({
           _id,
-          userid: usercheck._id, 
+          user: usercheck._id, 
           products: []
         });
         cart.save();
