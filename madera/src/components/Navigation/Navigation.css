@@ -1,8 +1,15 @@
-.headerContent {
+.navigation{
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    align-items: center;
+}
+
+.h1 {
     color: #fff;
 }
 
-.navigation, .login-button {
+.buttons {
     display: flex;
     gap: 30px;
 }

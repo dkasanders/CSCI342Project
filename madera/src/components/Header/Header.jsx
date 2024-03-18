@@ -6,26 +6,20 @@ import logo from '../../assets/logo.png';
 import './Header.css'
 
 import SearchBar from '../searchBar/SearchBar'
+import Navigation from '../Navigation/Navigation'
 import './../../index.css'
 
 function Header() {
 
     return (
-      <div>
-        <div className="header">
-            <h1><Link to="/">Madera</Link></h1>
-            <div className="navigation">
-              <Link to="/shop">Shop</Link>
-              <Link to="/about">About Us</Link>
-              <Link to="/cart">Cart</Link>
-            </div>
-            <div className="signup">
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Signup</Link>
-            </div>
-        </div>
+      <div className="header">
+        <Navigation />
         <div className="searchBar">
-          <SearchBar/>
+          <SearchBar />
+        </div>
+        <div className="headerContent">
+          <h1>Madera Wood Products</h1>
+
         </div>
       </div>
     )

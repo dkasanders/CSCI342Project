@@ -43,14 +43,14 @@ function Item() {
     }
 
     return (
-        <div>
+        <div className="item">
             <h2>Item Details</h2>
             <p>ID: {item.id}</p>
             <p>Name: {item.name}</p>
             <p>Price: ${item.price.toFixed(2)}</p>
             <p>Description: {item.description}</p>
             {/* Render images */}
-            <div>
+            <div className="itemimg-icon">
                 {item.images.map((image, index) => (
                     <img key={index} src={image} alt={`Image ${index}`} />
                 ))}

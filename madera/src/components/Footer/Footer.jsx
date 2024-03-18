@@ -46,8 +46,7 @@ const Footer = () => {
         </div>
         <div className="register-login-text1">
           <div className="we-ara-a-container9">
-            <span>{`We ara a lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat... `}</span>
-            <span className="read-more9">Read More</span>
+            <span>{`CSCI 342 Group 5 Final Project Winter 2024: Madera Wood Products. Developers: Kevin Hirohata, Alex Socha, Aicha Tokar Falatah, Dylan Kasanders, Ryan Rapoport, & Ian Crawford.`}</span>
           </div>
         </div>
         <div className="contact15">
@@ -102,7 +101,7 @@ const Footer = () => {
             alt=""
             src="/coloricon.svg"
           />
-          <div className="enter-your-email4">Enter your email</div>
+          <input type="email" className="enter-your-email4" placeholder="Enter your email"/>
           <div className="right4">
             <button className="colorbutton4">
               <div className="register-login4">Submit</div>

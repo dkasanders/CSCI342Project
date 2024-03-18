@@ -5,3 +5,50 @@ p {
 h2 {
     color: black;
 }
+
+.itemimg-icon {
+    align-self: stretch;
+    height: 481px;
+    position: relative;
+    border-radius: 12px;
+    max-width: 100%;
+    overflow: hidden;
+    flex-shrink: 0;
+    object-fit: cover;
+  }
+  .item-name {
+    margin: 0;
+  }
+  .price,
+  .itemname {
+    align-self: stretch;
+    position: relative;
+    line-height: 30px;
+  }
+  .price {
+    white-space: nowrap;
+  }
+  .item-description {
+    margin: 0;
+  }
+  .description {
+    align-self: stretch;
+    position: relative;
+    font-size: 12px;
+    line-height: 30px;
+  }
+  .item {
+    display: flex;
+    max-width: 60%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 3px;
+    text-align: left;
+    font-size: 14px;
+    color: #667085;
+    font-family: Inter;
+  }
+  

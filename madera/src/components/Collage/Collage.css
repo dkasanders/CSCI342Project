@@ -1,0 +1,102 @@
+.frame-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(32, 32, 32, 0.2);
+    width: 100%;
+    height: 100%;
+    display: none;
+  }
+  .quote-section-child,
+  .quote-section-inner {
+    height: 742px;
+    flex: 1;
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    min-width: 250px;
+  }
+  .quote-section-inner {
+    background-color: rgba(32, 32, 32, 0.2);
+    background-image: url(/public/frame-123@3x.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+  }
+  .quote-section-child {
+    object-fit: cover;
+    min-height: 742px;
+  }
+  .quote-section {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    max-width: 100%;
+    row-gap: 20px;
+  }
+  .footer-no-i-m-g-child {
+    align-self: stretch;
+    height: 420px;
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    flex-shrink: 0;
+    object-fit: cover;
+  }
+  .footer-no-i-m-g {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-width: 500px;
+    max-width: 100%;
+  }
+  .frame-item {
+    height: 742px;
+    flex: 1;
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    object-fit: cover;
+    min-width: 218px;
+    min-height: 742px;
+  }
+  .frame-group {
+    align-self: stretch;
+    flex-direction: row;
+    padding: 0 1px 0 0;
+    box-sizing: border-box;
+    row-gap: 20px;
+  }
+  .frame-group,
+  .main-sections,
+  .quote-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    max-width: 100%;
+  }
+  .main-sections {
+    width: 671px;
+    flex-direction: column;
+    min-width: 671px;
+  }
+  .quote-container {
+    align-self: stretch;
+    flex-direction: row;
+    padding: 0;
+    box-sizing: border-box;
+    row-gap: 20px;
+  }
+  @media screen and (max-width: 1200px) {
+    .main-sections {
+      flex: 1;
+    }
+    .quote-container {
+      flex-wrap: wrap;
+    }
+  }
+  
