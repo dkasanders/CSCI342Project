@@ -12,7 +12,7 @@ const SearchPage = ({result}) => {
     const user = JSON.parse(localStorage.getItem("user"));
     const id = user.id
     const [userCart, updateCart] = useState([]);
-    const [resultImage, updateResultImage] = "";
+    const [resultImage, updateResultImage] = useState("");
 
     
     
@@ -59,7 +59,8 @@ const SearchPage = ({result}) => {
     function matchProductImage(productName) {
         
         const matchingImage = imgs.find(image => {
-            if(image.description === productName.replace(/\s+/g, '_').toLowerCase()); {
+            if(image.description === productName.replace(/\s+/g, '_').toLowerCase()) {
+                console.log(productName.replace(/\s+/g, '_').toLowerCase(), image.description)
                 console.log("hiii :D");
                 return image;
             }
@@ -73,7 +74,8 @@ const SearchPage = ({result}) => {
 
     useEffect(() => {
         console.log(imgs);
-        matchProductImage(result.name);
+        const resImage = matchProductImage(result.name);
+        updateResultImage(resImage);
     }, [imgs]);
 
     useEffect(() => {
@@ -96,7 +98,7 @@ const SearchPage = ({result}) => {
         <>
             
             <div>
-                <img src={resultImage}/>
+                <img class="productImage" src={resultImage}/>
                 <p>{result.name}</p>
                 <p>${result.price.toFixed(2)}</p>
                 <p>{result.description}</p>

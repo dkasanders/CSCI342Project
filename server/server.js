@@ -237,10 +237,12 @@ app.get ("/product/category/:category", async (req, res) => {
 app.get("/product/byname/:name", async (req, res) => {
   try {
     const name = req.params.name;
+    console.log(name)
     if (!name) {
       res.status(400).json({ message: "no name provided"});
     }
-    const products = await Models.Product.find({name: name});
+    const regex = new RegExp(name, "i"); // "i" for case-insensitive
+    const products = await Models.Product.find({ name: regex });
     if (!products) {
       res.status(401).json({message: "no products found"});
     }

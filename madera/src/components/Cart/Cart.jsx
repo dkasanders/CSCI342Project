@@ -18,7 +18,7 @@ function Cart() {
     function matchProductImage(productName) {
         
         const matchingImage = imgs.find(image => {
-            if(image.description === productName.replace(/\s+/g, '_').toLowerCase()); {
+            if(image.description === productName.replace(/\s+/g, '_').toLowerCase()) {
                 return image;
             }
         });

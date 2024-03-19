@@ -5,3 +5,8 @@
 .product {
     text-align: left;
 }
+
+.productImage {
+    width:200px;
+    height: auto;
+}

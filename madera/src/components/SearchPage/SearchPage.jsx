@@ -31,6 +31,7 @@ const SearchPage = () => {
             headers: {'Content-Type': 'application/json'}
         })
         .then(response => {
+            console.log(url)
             if(!response.ok) {
                 throw new Error("Network response failed.");
             }
@@ -44,7 +45,7 @@ const SearchPage = () => {
         })
         
 
-    }, []);
+    }, [searchKey]);
     
     
     
