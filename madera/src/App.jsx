@@ -23,7 +23,6 @@ function App() {
       <Header />
       <div className="appBody">
         <Outlet/>
-        <About/>
       </div>
       <Footer/>
     </div>
