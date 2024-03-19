@@ -5,12 +5,19 @@ import './Navigation.css'
 
 import SearchBar from '../searchBar/SearchBar'
 import './../../index.css'
+import Logo from '../../assets/logo.png'
 
 function Navigation() {
 
     return (
       <div>
         <div className="navigation">
+          <img
+            className="maderialogo-icon12"
+            loading="lazy"
+            alt=""
+            src={Logo}
+          />
             <h1><Link to="/">Madera</Link></h1>
             <div className="buttons">
               <Link to="/shop">Shop</Link>
