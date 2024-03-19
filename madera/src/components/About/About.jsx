@@ -1,5 +1,6 @@
 import React from "react";
 
+/*
 function About () {
     return (
         <>
@@ -10,3 +11,67 @@ function About () {
 }
 
 export default About; 
+
+*/
+
+import MetricItem from "../MetricItem/MetricItem";
+import "./About.css";
+import photo from "../../assets/atlas-kadrow-Cj5LEl85meM-unsplash.jpg";
+import icon from "../../assets/featured-icon.png";
+
+const About = () => {
+  return (
+    <div className="about-us4">
+      <h1 className="about-us5">About Us</h1>
+      <div className="left-content-frame">
+        <img
+          className="right-content-frame"
+          loading="lazy"
+          alt=""
+          src={photo}
+        />
+        <div className="newsletter-text1">
+          <div className="container">
+            <div className="content">
+              <div className="heading-and-supporting-text">
+                <div className="heading-and-icon">
+                  <img
+                    className="featured-icon"
+                    loading="lazy"
+                    alt=""
+                    src={icon}
+                  />
+                  <h1 className="heading">
+                    Wood Products from all over the globe
+                  </h1>
+                </div>
+                <div className="supporting-text">{`Everything you need to build and create `}</div>
+              </div>
+            </div>
+          </div>
+          <div className="container1">
+            <div className="content1">
+              <MetricItem number="40+" />
+              <img
+                className="divider-icon"
+                loading="lazy"
+                alt=""
+                src="/divider.svg"
+              />
+              <MetricItem number="600%" />
+              <img
+                className="divider-icon1"
+                loading="lazy"
+                alt=""
+                src="/divider.svg"
+              />
+              <MetricItem number="4k+" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default About;
