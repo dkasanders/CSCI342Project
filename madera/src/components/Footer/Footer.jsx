@@ -1,5 +1,10 @@
 import React from "react";
 import './Footer.css';
+import Logo from '../../assets/logo.png';
+import mail from '../../assets/mail.png';
+import phone from '../../assets/phone.png';
+import pin from '../../assets/pin.png';
+import printer from '../../assets/printer.png';
 
 /*
 function Footer() {
@@ -38,7 +43,7 @@ const Footer = () => {
                 className="maderialogo-icon15"
                 loading="lazy"
                 alt=""
-                src="../../assets/maderiaLOGO.png"
+                src={Logo}
               />
             </div>
             <h1 className="madera15">MADERA</h1>
@@ -51,21 +56,21 @@ const Footer = () => {
         </div>
         <div className="contact15">
           <div className="lighttel8">
-            <img className="icons25" loading="lazy" alt="" src="./phone.png" />
+            <img className="icons25" loading="lazy" alt="" src={phone} />
             <div className="text38">
               <div className="tel8">Tel</div>
               <div className="maderia-outlook-com">123-456-7890</div>
             </div>
           </div>
           <div className="lighttel8">
-            <img className="icons25" loading="lazy" alt="" src="/icons-1.svg" />
+            <img className="icons25" loading="lazy" alt="" src={mail} />
             <div className="text38">
               <div className="tel8">Mail</div>
               <div className="maderia-outlook-com">maderia@outlook.com</div>
             </div>
           </div>
           <div className="lightaddress9">
-            <img className="icons25" loading="lazy" alt="" src="/icons-2.svg" />
+            <img className="icons25" loading="lazy" alt="" src={pin} />
             <div className="text40">
               <div className="tel8">Address</div>
               <div className="high-st-bellingham10">
@@ -78,7 +83,7 @@ const Footer = () => {
               className="lighticon8"
               loading="lazy"
               alt=""
-              src="/lighticon.svg"
+              src={printer}
             />
             <div className="text38">
               <div className="tel8">Fax</div>

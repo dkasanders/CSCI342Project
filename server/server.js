@@ -110,14 +110,14 @@ app.get("/user/:_id", async (req, res) => {
   const _id = req.params._id;
   try {
     const user = await Models.User.findById(_id);
-    console.log("user: ", user);
+    //console.log("user: ", user);
     if (!user) {
       res.status(401).json({message: "no user found"});
     }
     res.status(200).json(user);
   }
   catch (error){
-    console.log("error: ", error);
+    //console.log("error: ", error);
     return res.status(500);
   }
 });
@@ -431,9 +431,9 @@ app.route("/address")
 //------------------Cart API------------------
 
 app.get("/cart/:userid", async (req, res) => {
-  console.log("we are getting cart by userid");
+  //console.log("we are getting cart by userid");
   const id = req.params.userid;
-  console.log("userid: ", id);
+  //console.log("userid: ", id);
   if (!id) {
     return res.status(404).json({
       message: "No ID found"
@@ -441,7 +441,7 @@ app.get("/cart/:userid", async (req, res) => {
   }
   try {
     const cart = await Models.Cart.findOne({user: id});
-    console.log("cart", cart);
+    //console.log("cart", cart);
     if (!cart) {
       res.status(401).json({message: id});
     }
@@ -455,13 +455,13 @@ app.get("/cart/:userid", async (req, res) => {
 app.route("/cart")
   .post(async (req, res) => {
     const userid = req.body.id;
-    console.log("making cart for user", userid);
+    //console.log("making cart for user", userid);
     if (!userid) {
       return res.status(400).json({ message: "user Id required" });
     }
     try {
       const usercheck = await Models.User.findOne({ _id: userid});
-      console.log("usercheck: ", usercheck);
+      //console.log("usercheck: ", usercheck);
       if (!usercheck) {
         res.status(404).json({
           message: "No User found"
@@ -469,13 +469,13 @@ app.route("/cart")
       }
     }
     catch (error) {
-      console.log("error ", error);
+      //console.log("error ", error);
       res.status(500);
     }
     const _id = new mongoose.Types.ObjectId();
     try {
         const usercheck = await Models.User.findOne({ _id: userid});
-        console.log("id: ", usercheck._id);
+        //console.log("id: ", usercheck._id);
         const cart = new Models.Cart({
           _id,
           user: usercheck._id, 
@@ -484,7 +484,7 @@ app.route("/cart")
         cart.save();
         res.status(201).json({message: "Cart created successfully", cart: cart});
     } catch (err) {
-      console.log("error cart making ", err);
+      //console.log("error cart making ", err);
       return res.status(500);
     }
   })
@@ -528,7 +528,7 @@ app.route("/cart")
 
 app.put("/cart/newproduct", async (req, res) => {
   const {user, product, quantity} = req.body;
-  console.log("body: ", req.body);
+  //console.log("body: ", req.body);
   if (!user|| !product || !quantity) {
     return res.status(400).json({ message: "user ID, product ID, and quantity required" });
   }

@@ -1,0 +1,48 @@
+.number,
+.text33 {
+  align-self: stretch;
+  position: relative;
+}
+.number {
+  letter-spacing: -0.02em;
+  line-height: 72px;
+  font-weight: 600;
+}
+.text33 {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 500;
+  color: #101828;
+}
+.metric-item,
+.number-and-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.number-and-text {
+  align-self: stretch;
+  align-items: flex-start;
+  gap: 12px;
+}
+.metric-item {
+  flex: 1;
+  align-items: center;
+  min-width: 152px;
+  text-align: center;
+  font-size: 60px;
+  color: #12b886;
+  font-family: Inter;
+}
+@media screen and (max-width: 1050px) {
+  .number {
+    font-size: 48px;
+    line-height: 58px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .number {
+    font-size: 36px;
+    line-height: 43px;
+  }
+}

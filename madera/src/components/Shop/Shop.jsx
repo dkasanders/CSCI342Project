@@ -1,5 +1,7 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import SearchResult from "../SearchPage/SearchResult";
 import "./shop.css"
 import image1 from "./image1.png";
 
@@ -31,25 +33,35 @@ function Shop() {
         }
     ];
 
+    const url = 'http://localhost:3000/product/all';
+    const [results, updateResults] = useState([])
+
+    fetch(url, {
+        method: "GET",
+        headers: {'Content-Type': 'application/json'}
+    })
+    .then(response => {
+        if(!response.ok) {
+            throw new Error("Network response failed.");
+        }
+        return response.json();
+    })
+    .then(data => {
+        updateResults(data);
+    })
+    .catch(error => {
+        console.error("There was a problem with fetching: ", error);
+    })
+
     return (
         <div>
             <h2>Shop Page</h2>
-            {/* Map over the items array to render each item */}
-            {items.map(item => (
-                <div key={item.id}>
-                    <h3>{item.name}</h3>
-                    <p>Price: ${item.price.toFixed(2)}</p>
-                    <p>Description: {item.description}</p>
-                    {/* Render images */}
-                    <div>
-                        {item.images.map((image, index) => (
-                            <img key={index} src={image} alt={`Image ${index}`} />
-                        ))}
-                    </div>
-                    {/* Link to item page with item ID as parameter */}
-                    <Link to={`/item/${item.id}`}>View Item</Link>
+            <div>
+                    <h2>All Products</h2>
+                    {results.map((result, index) => {
+                        return <SearchResult key={index} result={result}/>
+                    })}
                 </div>
-            ))}
         </div>
     );
 }

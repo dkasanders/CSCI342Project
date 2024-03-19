@@ -38,7 +38,7 @@ h2 {
     line-height: 30px;
   }
   .item {
-    display: flex;
+    align-self: center;
     max-width: 60%;
     overflow: hidden;
     display: flex;

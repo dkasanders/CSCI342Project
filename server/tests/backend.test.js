@@ -29,7 +29,7 @@ describe("Test user signup login and delete", () => {
         const user = await request(app).post("/signup").send({
             firstName: "Alex",
             lastName: "Socha",
-            email : "te@te.te",
+            email : "tester@tester.com",
             phoneNumber : "0123456789",
             password : "testtest",
             confirmPassword : "testtest"
@@ -38,7 +38,7 @@ describe("Test user signup login and delete", () => {
         expect(user.body.user.firstName).toBe("Alex");
 
         const login = await request(app).post("/login").send({
-            email : "te@te.te",
+            email : "tester@tester.com",
             password : "testtest"
         });
 
