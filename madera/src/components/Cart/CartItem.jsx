@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import './CartItem.css';
 
 const SearchPage = ({result}) => {
 
@@ -8,7 +8,7 @@ const SearchPage = ({result}) => {
         <>
             
             <div>
-                <img src={result.images[0]}/>
+                <img className="productImage" src={result.images[0]}/>
                 <p>{result.name}</p>
                 <p>${result.price.toFixed(2)}</p>
                 <p>{result.quantity}</p>

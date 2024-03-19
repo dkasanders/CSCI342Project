@@ -429,16 +429,19 @@ app.route("/address")
 //------------------Cart API------------------
 
 app.get("/cart/:userid", async (req, res) => {
-  const user = req.params.userid;
-  if (!user) {
+  console.log("we are getting cart by userid");
+  const id = req.params.userid;
+  console.log("userid: ", id);
+  if (!id) {
     return res.status(404).json({
       message: "No ID found"
     });
   }
   try {
-    const cart = await Models.Cart.findOne({userid: user});
+    const cart = await Models.Cart.findOne({user: id});
+    console.log("cart", cart);
     if (!cart) {
-      res.status(401).json({message: user});
+      res.status(401).json({message: id});
     }
     res.status(200).json(cart);
   }
@@ -523,6 +526,7 @@ app.route("/cart")
 
 app.put("/cart/newproduct", async (req, res) => {
   const {user, product, quantity} = req.body;
+  console.log("body: ", req.body);
   if (!user|| !product || !quantity) {
     return res.status(400).json({ message: "user ID, product ID, and quantity required" });
   }

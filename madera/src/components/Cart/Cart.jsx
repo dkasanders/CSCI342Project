@@ -8,20 +8,19 @@ import { useSelector } from "react-redux";
 function Cart() {
     const [imgs, updateImages] = useState([]);
     
+    const user = JSON.parse(localStorage.getItem("user"));
+    const id = user.id;
     
-    // const getUserId = () => {
-    //     console.log(localStorage.)
-    //     return JSON.parse(localStorage.getItem('user')).id;
-    // }
     const [userCart, updateuserCart] = useState([])
-    const { user } = useSelector((state) => state.auth);
-    console.log(user)
+
 
 
     function matchProductImage(productName) {
-        console.log(imgs)
+        
         const matchingImage = imgs.find(image => {
-            return image.description === productName.replace(/\s+/g, '_').toLowerCase();
+            if(image.description === productName.replace(/\s+/g, '_').toLowerCase()); {
+                return image;
+            }
         });
         return matchingImage.link
     }
